@@ -16,7 +16,7 @@ const TestReusableForm = props => {
           placeholder='Age'
         />
         <textarea
-          name='age'
+          name='desc'
           placeholder='Description'
         />
         <button type='submit'> {props.buttonText} </button>  
