@@ -1,25 +1,30 @@
-import React from 'react';
-import TestList from './TestControl';
+import React, { useState } from 'react';
+import TestList from './TestList';
 import TestForm from  './TestForm';
-import { useState } from 'react';
 
 const TestControl = () => {
+  console.log('re-rendering')
 
-  const [formVisible, setFormVisible] = useState(false)
+  const [formVisible, setFormVisible] = useState(false);
 
 
   const handleFormVisible = () => {
-    const newFormVisible = {...formVisible}
-    return setFormVisible(!newFormVisible)
+    if (formVisible === false) {
+      return setFormVisible(true)
+    } else {
+      return setFormVisible(false)
+    }
   }
 
-  
+  const handleRedirectOnTestDataCreation = () => {
+    return setFormVisible(false)
+  }
 
   let currentVisible = null;
   let buttonText = null;
 
   if (formVisible) {
-    currentVisible = <TestForm  onNewDataCreation={handleFormVisible}/>
+    currentVisible = <TestForm onNewTestData={handleRedirectOnTestDataCreation} />
     buttonText = "Return to Test List"
   } else {
     currentVisible = <TestList />
@@ -27,8 +32,9 @@ const TestControl = () => {
   }
   return (
     <React.Fragment>
+      <h3> This is the Test Control Component</h3>
       {currentVisible}
-      <button onClick={handleFormVisible}>{buttonText}</button>
+      <button onClick={handleFormVisible}>{buttonText}</button> 
     </React.Fragment>    
   )
 }
