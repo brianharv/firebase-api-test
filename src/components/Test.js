@@ -30,15 +30,15 @@ const Test = () => {
 
   return(
     <React.Fragment>
-      <h3> Person:</h3>
-      {testData.map((test) => (
+      {testData.map((test, index) => (
         <div key={test.id}>
+        <h3> Person {index + 1}:</h3>
         <p>{test.name}, {test.age}</p>
         <p>{test.desc}</p> 
+        <hr/>
         </div>
       )
       )}
-      <hr/>
     </React.Fragment>
   )
 }

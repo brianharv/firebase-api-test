@@ -3,7 +3,6 @@ import TestList from './TestList';
 import TestForm from  './TestForm';
 
 const TestControl = () => {
-  console.log('re-rendering')
 
   const [formVisible, setFormVisible] = useState(false);
 
@@ -16,15 +15,11 @@ const TestControl = () => {
     }
   }
 
-  const handleRedirectOnTestDataCreation = () => {
-    return setFormVisible(false)
-  }
-
   let currentVisible = null;
   let buttonText = null;
 
   if (formVisible) {
-    currentVisible = <TestForm onNewTestData={handleRedirectOnTestDataCreation} />
+    currentVisible = <TestForm onNewTestData={handleFormVisible} />
     buttonText = "Return to Test List"
   } else {
     currentVisible = <TestList />
