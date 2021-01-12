@@ -17,7 +17,6 @@ const Test = () => {
         items.push(doc.data());
       });
       setTestData(items)
-      setLoading(false)
     })
   }
 
@@ -29,27 +28,27 @@ const Test = () => {
         if (!response.ok) {
           Error (response.statusText);
         }
-        console.log(response);
         return response.json();
       }
     )
     .then(
-      data => {
-        console.log(data.data[0].url)
-        return setGifState(data.data[0].url)
+      jsonResponse => {
+        console.log(jsonResponse.data)
+        return setGifState(jsonResponse.data)
       }
     )
     .catch = (error) => {
       return error;
     }
+    setLoading(false)
   }, []);
 
   if (loading) {
     return <h3>loading...</h3>
   }
+  
+  console.log(gifState)
 
-  
-  
   return(
     <React.Fragment>
       {testData.map((test, index) => (
@@ -57,7 +56,12 @@ const Test = () => {
         <h3> Person {index + 1}:</h3>
         <p>{test.name}, {test.age}</p>
         <p>{test.desc}</p>
-        <p>{gifState}</p>
+        </div>
+      )
+      )}
+      {gifState.map(gif => (
+        <div key={gif.id}>
+          < img src={gif.images.downsized.url}/>
         </div>
       )
       )}
